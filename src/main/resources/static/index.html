@@ -74,6 +74,12 @@
             // Get the selected value from the select list
             var selectValue = document.getElementById("selectValue").value;
 
+            // Check if the selected value is blank
+            if (selectValue === '') {
+                alert("Please select a value before submitting.");
+                return;
+            }
+
             // Redirect to displayall.html with tableName as a query parameter
             window.location.href = "/displayall.html?tableName=" + encodeURIComponent(selectValue);
         }

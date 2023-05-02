@@ -2,6 +2,8 @@ package com.bonusproject.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,11 +34,14 @@ public class ApiController {
     }
 
     @GetMapping("/table")
-    public List<Map<String, Object>> getATableData(@RequestParam String tableName) {
-        logger.info("*******" + tableName);
+    public ResponseEntity<?> getATableData(@RequestParam(required = true) String tableName) {
         String sql = "SELECT * FROM "+ tableName;
-        logger.info(sql);
-        List<Map<String, Object>> tableData = jdbcTemplate.queryForList(sql);
-        return tableData;
+        try {
+            List<Map<String, Object>> tableData = jdbcTemplate.queryForList(sql);
+            return ResponseEntity.ok(tableData);
+        } catch (Exception e) {
+            String errorMessage = "Error retrieving table data: " + e.getMessage();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorMessage);
+        }
     }
 }

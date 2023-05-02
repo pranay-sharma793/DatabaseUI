@@ -93,6 +93,8 @@
                     document.getElementById("tableData").innerHTML = tableHtml;
                 } else {
                     console.error(xhr.statusText);
+                    var errorHtml = "<div style='color: red; font-weight: bold;'>" + xhr.responseText + "</div>";
+                    document.getElementById("tableData").innerHTML = errorHtml;
                 }
             }
         };

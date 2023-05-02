@@ -21,6 +21,10 @@ public class UpdateTableController {
 
     @PostMapping("/updateTable")
     public String updateTable(@RequestParam("query") String query, Model model) {
+        if (query.toUpperCase().contains("DROP") || query.toUpperCase().contains("CREATE") || query.toUpperCase().contains("TRUNCATE")) {
+            model.addAttribute("error", "Invalid query");
+            return "result";
+        }
         try {
             jdbcTemplate.update(query);
             model.addAttribute("message", "Update successful!");
