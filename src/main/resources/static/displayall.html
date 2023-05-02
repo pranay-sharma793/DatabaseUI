@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Display Data</title>
+    <style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 20px 0;
+        font-size: 1.2em;
+        font-family: sans-serif;
+    }
+
+    th, td {
+        text-align: center;
+        padding: 8px;
+        border: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #f2f2f2;
+        color: #337ab7;
+        font-weight: bold;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    tr:hover {
+        background-color: #ddd;
+    }
+
+    input[type="button"] {
+        padding: 6px 14px;
+        font-size: 14px;
+        border-radius: 5px;
+        border: none;
+        background-color: #4CAF50;
+        color: #ffffff;
+        box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        cursor: pointer;
+    }
+    input[type="button"]:hover {
+        background-color: #3e8e41;
+    }
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+    <div style="text-align: center;">
+        <h1 class="header" style="color: #337ab7;"><span id="tableName"></span></h1>
+    </div>
+
+
+    <div id="tableData"></div>
+</div>
+
+<div style="text-align: center;">
+    <input type="button" value="Home" onclick="location.href='/'">
+</div>
+
+<script>
+
+        // Retrieve the value of tableName parameter from the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const tableName = urlParams.get('tableName');
+
+        // Make an AJAX call to retrieve the data from the server
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    var data = JSON.parse(xhr.responseText);
+
+                    // Display table data in HTML
+                    var tableHtml = "<table><tr>";
+                    for (var key in data[0]) {
+                        tableHtml += "<th>" + key + "</th>";
+                    }
+                    tableHtml += "</tr>";
+                    for (var i = 0; i < data.length; i++) {
+                        tableHtml += "<tr>";
+                        for (var key in data[i]) {
+                            tableHtml += "<td>" + data[i][key] + "</td>";
+                        }
+                        tableHtml += "</tr>";
+                    }
+                    tableHtml += "</table>";
+                    document.getElementById("tableData").innerHTML = tableHtml;
+                } else {
+                    console.error(xhr.statusText);
+                }
+            }
+        };
+
+        xhr.open("GET", "/api/table?tableName=" + tableName);
+        xhr.send();
+
+
+        // Display the table name in HTML
+        var titleHtml = "<h1 style='text-align:center'>" + tableName + "</h1>";
+        document.getElementById("tableName").innerHTML = tableName;
+
+    </script>
+</body>
+</html>

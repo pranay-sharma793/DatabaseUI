@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Homepage</title>
+    <style>
+        body {
+            background-color: #f1f1f1;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        h1 {
+            font-size: 36px;
+            text-align: center;
+            margin-top: 50px;
+        }
+        form {
+            font-size: 20px;
+            text-align: center;
+            margin-top: 50px;
+        }
+        label {
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        select {
+            padding: 10px;
+            font-size: 20px;
+            border-radius: 5px;
+            border: none;
+            background-color: #ffffff;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        }
+        input[type="button"] {
+            padding: 10px 20px;
+            font-size: 20px;
+            border-radius: 5px;
+            border: none;
+            background-color: #4CAF50;
+            color: #ffffff;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+            cursor: pointer;
+        }
+        input[type="button"]:hover {
+            background-color: #3e8e41;
+        }
+        hr {
+            margin-top: 50px;
+            margin-bottom: 50px;
+            border: 0;
+            border-top: 1px solid #ccc;
+        }
+        .section-title {
+            font-size: 30px;
+            margin-top: 50px;
+            margin-bottom: 30px;
+        }
+        .section-button {
+            display: block;
+            margin: auto;
+            padding: 10px 20px;
+            font-size: 20px;
+            border-radius: 5px;
+            border: none;
+            background-color: #2196F3;
+            color: #ffffff;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+            cursor: pointer;
+        }
+        .section-button:hover {
+            background-color: #0b7dda;
+        }
+    </style>
+    <script>
+        function onSubmit() {
+            // Get the selected value from the select list
+            var selectValue = document.getElementById("selectValue").value;
+
+            // Redirect to displayall.html with tableName as a query parameter
+            window.location.href = "/displayall.html?tableName=" + encodeURIComponent(selectValue);
+        }
+    </script>
+</head>
+<body>
+<h1>Select a Value to Display its Data</h1>
+<form>
+    <select name="selected_value" id="selectValue">
+        <option value="">-- Select a value --</option>
+        <optgroup label="Views">
+            <option value="shippedVsCustDemand">shippedVsCustDemand</option>
+            <option value="totalManufItems">totalManufItems</option>
+            <option value="matsUsedVsShipped">matsUsedVsShipped</option>
+            <option value="producedVsShipped">producedVsShipped</option>
+            <option value="suppliedVsShipped">suppliedVsShipped</option>
+            <option value="perSupplierCost">perSupplierCost</option>
+            <option value="perManufCost">perManufCost</option>
+            <option value="perShipperCost">perShipperCost</option>
+            <option value="totalCostBreakDown">totalCostBreakDown</option>
+            <option value="customersWithUnsatisfiedDemand">customersWithUnsatisfiedDemand</option>
+            <option value="suppliersWithUnsentOrders">suppliersWithUnsentOrders</option>
+            <option value="manufsWoutEnoughMats">manufsWoutEnoughMats</option>
+            <option value="manufsWithUnsentOrders">manufsWithUnsentOrders</option>
+        </optgroup>
+        <optgroup label="Tables">
+            <option value="items">Items</option>
+            <option value="busEntities">Business Entities</option>
+            <option value="billOfMaterials">Bill Of Materials</option>
+            <option value="supplierDiscounts">Supplier Discounts</option>
+            <option value="supplyUnitPricing">Supply Unit Pricing</option>
+            <option value="manufDiscounts">Manuf Discounts</option>
+            <option value="manufUnitPricing">Manuf Unit Pricing</option>
+            <option value="shippingPricing">Shipping Pricing</option>
+            <option value="customerDemand">Customer Demand</option>
+            <option value="supplyOrders">Supply Orders</option>
+            <option value="manufOrders">Manuf Orders </option>
+            <option value="shipOrders">Shipping Orders </option>
+        </optgroup>
+    </select>
+    <br /><br />
+    <input type="button" value="Submit" onclick="onSubmit()">
+</form>
+
+<hr />
+
+<h1>Update Database Tables</h1>
+<form>
+    <input type="button" value="Update Tables" onclick="window.location.href='/update.html'">
+</form>
+</body>
+
+</html>
