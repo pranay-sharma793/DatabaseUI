@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 @RequestMapping("/api")
 public class ApiController {
 
-    private Logger logger = Logger.getLogger("TestController");
+    private Logger logger = Logger.getLogger("ApiController");
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
@@ -38,9 +38,11 @@ public class ApiController {
         String sql = "SELECT * FROM "+ tableName;
         try {
             List<Map<String, Object>> tableData = jdbcTemplate.queryForList(sql);
+            logger.info("** Data retrieved successfully **");
             return ResponseEntity.ok(tableData);
         } catch (Exception e) {
             String errorMessage = "Error retrieving table data: " + e.getMessage();
+            logger.info("** Error retrieving table data: " + e.getLocalizedMessage() + " **");
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorMessage);
         }
     }
