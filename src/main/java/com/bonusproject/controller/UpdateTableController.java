@@ -21,8 +21,9 @@ public class UpdateTableController {
 
     @PostMapping("/updateTable")
     public String updateTable(@RequestParam("query") String query, Model model) {
-        if (query.toUpperCase().contains("DROP") || query.toUpperCase().contains("CREATE") || query.toUpperCase().contains("TRUNCATE")) {
-            model.addAttribute("error", "Invalid query");
+        if (query.toUpperCase().contains("DROP TABLE") || query.toUpperCase().contains("CREATE TABLE") || query.toUpperCase().contains("TRUNCATE TABLE")
+        || query.toUpperCase().contains("COMMIT") || query.toUpperCase().contains("ROLLBACK")) {
+            model.addAttribute("error", "Invalid query | " + query.toUpperCase().split(" ")[0] + " action not permitted");
             return "result";
         }
         try {
