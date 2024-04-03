@@ -1,13 +1,6 @@
 # Bonus Project
 
 ## Installation and Execution
-
-1. Download and unzip the folder ‘550_Bonus_G01393761’ to your preferred location.
-2. Open your preferred Integrated Development Environment (IDE) such as IntelliJ, Eclipse, VsStudio, etc.
-3. This is a Java Spring Boot project, ensure that you have Java Development Kit (JDK) installed and all path variables set up. If you need help with this, refer to the official documentation on **[https://docs.oracle.com/cd/E19182-01/821-0917/inst_jdk_javahome_t/index.html](https://docs.oracle.com/cd/E19182-01/821-0917/inst_jdk_javahome_t/index.html)**.
-4. To start the application, locate and run the ‘Application.java’ file in the ‘src/main/java/com/bonusproject/’ directory using your IDE.
-5. Once the application has successfully started, open your web browser and go to ‘**[http://localhost:8080/](http://localhost:8080/)**’. You can confirm that the application has started when the Run console prints: “com.bonusproject.Application : Started Application in { } seconds (JVM running for 2.486)”
-
 ## Background
 
 - This is a software project written in Java using the Spring Boot framework. It allows users to interact with a pre-defined list of tables and views and execute Create, Read, Update, and Delete (CRUD) queries.
