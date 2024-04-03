@@ -1,6 +1,5 @@
 # Bonus Project
 
-## Installation and Execution
 ## Background
 
 - This is a software project written in Java using the Spring Boot framework. It allows users to interact with a pre-defined list of tables and views and execute Create, Read, Update, and Delete (CRUD) queries.
